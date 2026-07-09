@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
                 "2026",
                 "10 د",
                 "8.5",
-                "https://download.samplelib.com/mp4/sample-15s.mp4",
+                "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
                 "https://upload.wikimedia.org/wikipedia/commons/c/c5/Big_buck_bunny_poster_big.jpg",
                 Color.parseColor("#8B0000")
         );
