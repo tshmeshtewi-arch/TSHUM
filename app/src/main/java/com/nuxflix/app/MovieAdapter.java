@@ -4,9 +4,11 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+import com.bumptech.glide.Glide;
 import java.util.List;
 
 public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHolder> {
@@ -29,7 +31,11 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHol
         Movie movie = movies.get(position);
         holder.title.setText(movie.title);
         holder.meta.setText(movie.year + " · " + movie.duration + " · ⭐ " + movie.rating);
-        holder.poster.setBackgroundColor(movie.posterColor);
+
+        Glide.with(holder.poster.getContext())
+                .load(movie.posterUrl)
+                .placeholder(android.R.color.darker_gray)
+                .into(holder.poster);
 
         holder.itemView.setOnClickListener(v -> {
             Intent intent = new Intent(v.getContext(), PlayerActivity.class);
@@ -47,7 +53,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHol
 
     static class MovieViewHolder extends RecyclerView.ViewHolder {
         TextView title, meta;
-        View poster;
+        ImageView poster;
 
         MovieViewHolder(View itemView) {
             super(itemView);
