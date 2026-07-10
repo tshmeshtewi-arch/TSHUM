@@ -1,6 +1,5 @@
 package com.nuxflix.app
 
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -37,12 +36,14 @@ class MovieAdapter(
         private val posterView: ImageView = itemView.findViewById(R.id.poster_view)
         private val titleView: TextView = itemView.findViewById(R.id.movie_title)
         private val metaView: TextView = itemView.findViewById(R.id.movie_meta)
-        private val descView: TextView = itemView.findViewById(R.id.movie_description)
+        private val categoryBadge: TextView = itemView.findViewById(R.id.category_badge)
+        private val ratingBadge: TextView = itemView.findViewById(R.id.rating_badge)
 
         fun bind(movie: Movie) {
             titleView.text = movie.title
-            metaView.text = "${movie.year} • ${movie.duration} • ${movie.rating}"
-            descView.text = movie.description
+            metaView.text = "${movie.year} • ${movie.duration}"
+            categoryBadge.text = movie.category
+            ratingBadge.text = movie.rating
 
             Glide.with(itemView.context)
                 .load(movie.posterUrl)
