@@ -46,18 +46,18 @@ class DetailActivity : AppCompatActivity() {
 
         btnBack.setOnClickListener { finish() }
 
+        // ✅ التعديل: نرسل movie_id بدل videoUrl
         btnPlay.setOnClickListener {
             val intent = Intent(this, PlayerActivity::class.java)
-            intent.putExtra("videoUrl", movie.videoUrl)
-            intent.putExtra("title", movie.title)
+            intent.putExtra("movie_id", movie.id)
             startActivity(intent)
         }
 
+        // ✅ التعديل: نفس الشيء للtrailer
         btnTrailer.setOnClickListener {
-            val url = if (movie.videoUrlBackup.isNotBlank()) movie.videoUrlBackup else movie.videoUrl
             val intent = Intent(this, PlayerActivity::class.java)
-            intent.putExtra("videoUrl", url)
-            intent.putExtra("title", movie.title + " - Trailer")
+            intent.putExtra("movie_id", movie.id)
+            intent.putExtra("play_trailer", true)
             startActivity(intent)
         }
     }
