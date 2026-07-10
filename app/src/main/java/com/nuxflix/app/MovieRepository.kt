@@ -1,4 +1,4 @@
-package com.nuxflix.app
+    package com.nuxflix.app
 
 object MovieRepository {
 
@@ -10,9 +10,9 @@ object MovieRepository {
             year = "2026",
             duration = "10 دقائق",
             rating = "⭐ 8.5",
-            videoUrl = "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
-            videoUrlBackup = "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
-            posterUrl = "https://upload.wikimedia.org/wikipedia/commons/c/c5/Big_buck_bunny_poster_big.jpg",
+            videoUrl = "https://www.w3schools.com/html/mov_bbb.mp4",
+            videoUrlBackup = "https://www.w3schools.com/html/mov_bbb.mp4",
+            posterUrl = "https://commons.wikimedia.org/wiki/Special:FilePath/Big_buck_bunny_poster_big.jpg",
             category = "أفلام كرتون",
             isFeatured = true
         ),
@@ -23,8 +23,8 @@ object MovieRepository {
             year = "2026",
             duration = "12 دقيقة",
             rating = "⭐ 7.8",
-            videoUrl = "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4",
-            posterUrl = "https://upload.wikimedia.org/wikipedia/commons/e/e8/Elephants_Dream_s5_both.jpg",
+            videoUrl = "https://www.w3schools.com/html/mov_bbb.mp4",
+            posterUrl = "https://commons.wikimedia.org/wiki/Special:FilePath/Elephants_Dream_s5_both.jpg",
             category = "أفلام أنميشن",
             isFeatured = true
         ),
@@ -35,8 +35,9 @@ object MovieRepository {
             year = "2026",
             duration = "15 دقيقة",
             rating = "⭐ 7.2",
-            videoUrl = "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/SubaruOutbackOnStreetAndDirt.mp4",
-            posterUrl = "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/SubaruOutbackOnStreetAndDirt.jpg",
+            videoUrl = "https://www.w3schools.com/html/mov_bbb.mp4",
+            posterUrl = "",
+            posterColor = 0xFF3B5998.toInt(),
             category = "وثائقيات",
             isFeatured = false
         ),
@@ -47,8 +48,8 @@ object MovieRepository {
             year = "2026",
             duration = "14 دقيقة",
             rating = "⭐ 8.0",
-            videoUrl = "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4",
-            posterUrl = "https://upload.wikimedia.org/wikipedia/commons/1/13/Tears_of_Steel_poster.jpg",
+            videoUrl = "https://www.w3schools.com/html/mov_bbb.mp4",
+            posterUrl = "https://commons.wikimedia.org/wiki/Special:FilePath/Tos-poster.png",
             category = "خيال علمي",
             isFeatured = false
         ),
@@ -59,8 +60,8 @@ object MovieRepository {
             year = "2026",
             duration = "15 دقيقة",
             rating = "⭐ 8.3",
-            videoUrl = "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/Sintel.mp4",
-            posterUrl = "https://upload.wikimedia.org/wikipedia/commons/8/8e/Sintel_poster.jpg",
+            videoUrl = "https://www.w3schools.com/html/mov_bbb.mp4",
+            posterUrl = "https://commons.wikimedia.org/wiki/Special:FilePath/Sintel_poster.jpg",
             category = "دراما",
             isFeatured = false
         )
