@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/nav_home"
+        android:icon="@android:drawable/ic_menu_sort_by_size"
+        android:title="الرئيسية" />
+    <item
+        android:id="@+id/nav_categories"
+        android:icon="@android:drawable/ic_menu_manage"
+        android:title="التصنيفات" />
+    <item
+        android:id="@+id/nav_search"
+        android:icon="@android:drawable/ic_menu_search"
+        android:title="بحث" />
+    <item
+        android:id="@+id/nav_favorites"
+        android:icon="@android:drawable/ic_menu_gallery"
+        android:title="المفضلة" />
+</menu>
