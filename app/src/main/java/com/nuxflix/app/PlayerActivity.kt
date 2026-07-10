@@ -1,8 +1,11 @@
 package com.nuxflix.app
 
+import android.app.AlertDialog
 import android.net.Uri
 import android.os.Bundle
 import android.widget.ProgressBar
+import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.media3.common.MediaItem
 import androidx.media3.common.Player
@@ -14,6 +17,10 @@ class PlayerActivity : AppCompatActivity() {
     private var player: ExoPlayer? = null
     private lateinit var playerView: PlayerView
     private lateinit var loadingSpinner: ProgressBar
+    private lateinit var qualityText: TextView
+
+    private var movie: Movie? = null
+    private var currentQuality: String = "720p"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -21,8 +28,25 @@ class PlayerActivity : AppCompatActivity() {
 
         playerView = findViewById(R.id.player_view)
         loadingSpinner = findViewById(R.id.loading_spinner)
+        qualityText = findViewById(R.id.quality_text)
 
-        val videoUrl = intent.getStringExtra("videoUrl") ?: return
+        val movieId = intent.getIntExtra("movie_id", -1)
+        movie = MovieRepository.getMovieById(movieId)
+
+        if (movie == null) {
+            Toast.makeText(this, "الفيلم غير متوفر", Toast.LENGTH_SHORT).show()
+            finish()
+            return
+        }
+
+        qualityText.text = currentQuality
+        qualityText.setOnClickListener { showQualityPicker() }
+
+        setupPlayer(movie!!.getVideoUrl(currentQuality))
+    }
+
+    private fun setupPlayer(videoUrl: String) {
+        player?.release()
 
         player = ExoPlayer.Builder(this).build().also { exoPlayer ->
             playerView.player = exoPlayer
@@ -49,6 +73,22 @@ class PlayerActivity : AppCompatActivity() {
             exoPlayer.prepare()
             exoPlayer.play()
         }
+    }
+
+    private fun showQualityPicker() {
+        val qualities = movie?.videoUrls?.keys?.toList() ?: listOf("360p", "480p", "720p", "1080p")
+        val currentIndex = qualities.indexOf(currentQuality).coerceAtLeast(0)
+
+        AlertDialog.Builder(this)
+            .setTitle("اختر جودة الفيديو")
+            .setSingleChoiceItems(qualities.toTypedArray(), currentIndex) { dialog, which ->
+                currentQuality = qualities[which]
+                qualityText.text = currentQuality
+                setupPlayer(movie!!.getVideoUrl(currentQuality))
+                dialog.dismiss()
+            }
+            .setNegativeButton("إلغاء", null)
+            .show()
     }
 
     override fun onStop() {
