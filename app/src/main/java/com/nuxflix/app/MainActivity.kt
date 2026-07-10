@@ -4,10 +4,10 @@ import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.view.MenuItem
 import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.widget.EditText
+import android.widget.ImageButton
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
@@ -19,6 +19,8 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var recyclerView: RecyclerView
     private lateinit var searchInput: EditText
+    private lateinit var searchIcon: ImageButton
+    private lateinit var brandText: TextView
     private lateinit var emptyText: TextView
     private lateinit var chipGroup: ChipGroup
     private lateinit var bottomNav: BottomNavigationView
@@ -32,6 +34,8 @@ class MainActivity : AppCompatActivity() {
 
         recyclerView = findViewById(R.id.home_recycler)
         searchInput = findViewById(R.id.search_input)
+        searchIcon = findViewById(R.id.search_icon)
+        brandText = findViewById(R.id.brand_text)
         emptyText = findViewById(R.id.empty_text)
         chipGroup = findViewById(R.id.chip_group)
         bottomNav = findViewById(R.id.bottom_nav)
@@ -57,6 +61,14 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupSearch() {
+        // أيقونة البحث: تخفي الاسم وتظهر البحث
+        searchIcon.setOnClickListener {
+            brandText.visibility = View.GONE
+            searchInput.visibility = View.VISIBLE
+            searchInput.requestFocus()
+            searchIcon.visibility = View.GONE
+        }
+
         searchInput.setOnEditorActionListener { _, actionId, _ ->
             if (actionId == EditorInfo.IME_ACTION_SEARCH) {
                 currentQuery = searchInput.text.toString()
@@ -73,6 +85,31 @@ class MainActivity : AppCompatActivity() {
             }
             override fun afterTextChanged(s: Editable?) {}
         })
+
+        // زر الرجوع في البحث (لما المستخدم يضغط Back)
+        searchInput.setOnKeyListener { _, keyCode, event ->
+            if (keyCode == android.view.KeyEvent.KEYCODE_BACK && event.action == android.view.KeyEvent.ACTION_UP) {
+                hideSearch()
+                true
+            } else false
+        }
+    }
+
+    private fun hideSearch() {
+        searchInput.visibility = View.GONE
+        searchIcon.visibility = View.VISIBLE
+        brandText.visibility = View.VISIBLE
+        searchInput.text.clear()
+        currentQuery = ""
+        loadMovies()
+    }
+
+    override fun onBackPressed() {
+        if (searchInput.visibility == View.VISIBLE) {
+            hideSearch()
+        } else {
+            super.onBackPressed()
+        }
     }
 
     private fun setupCategoryChips() {
@@ -98,7 +135,7 @@ class MainActivity : AppCompatActivity() {
             when (item.itemId) {
                 R.id.nav_home -> {
                     currentCategory = "الكل"
-                    searchInput.text.clear()
+                    hideSearch()
                     chipGroup.check(chipGroup.getChildAt(0).id)
                     loadMovies()
                     true
@@ -108,11 +145,10 @@ class MainActivity : AppCompatActivity() {
                     true
                 }
                 R.id.nav_search -> {
-                    searchInput.requestFocus()
+                    searchIcon.performClick()
                     true
                 }
                 R.id.nav_favorites -> {
-                    // TODO: implement favorites
                     true
                 }
                 else -> false
