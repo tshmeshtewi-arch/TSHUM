@@ -20,19 +20,36 @@
             android:layout_height="?attr/actionBarSize"
             android:paddingHorizontal="16dp">
 
+            <!-- FUXFLIX (يسار) -->
             <TextView
                 android:id="@+id/brand_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="TSHUM"
+                android:text="FUXFLIX"
                 android:textColor="@color/accent_red"
-                android:textSize="28sp"
+                android:textSize="26sp"
                 android:textStyle="bold"
-                android:letterSpacing="0.1"
+                android:letterSpacing="0.15"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
+            <!-- فراغ في الوسط (ما في شي) -->
+
+            <!-- أيقونة البحث (يمين) -->
+            <ImageButton
+                android:id="@+id/search_icon"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@drawable/bg_search_icon"
+                android:src="@android:drawable/ic_menu_search"
+                android:scaleType="center"
+                android:contentDescription="بحث"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <!-- شريط البحث (مخفي افتراضياً، يظهر عند الضغط) -->
             <EditText
                 android:id="@+id/search_input"
                 android:layout_width="0dp"
@@ -49,6 +66,7 @@
                 android:paddingHorizontal="16dp"
                 android:textColor="@color/text_primary"
                 android:textColorHint="@color/text_muted"
+                android:visibility="gone"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/brand_text"
