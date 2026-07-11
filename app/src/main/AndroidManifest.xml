@@ -37,5 +37,20 @@
             android:exported="false"
             android:theme="@style/Theme.NuxFlix" />
 
+        <activity
+            android:name=".AccountActivity"
+            android:exported="false"
+            android:theme="@style/Theme.NuxFlix" />
+
+        <activity
+            android:name=".SettingsActivity"
+            android:exported="false"
+            android:theme="@style/Theme.NuxFlix" />
+
+        <activity
+            android:name=".DownloadsActivity"
+            android:exported="false"
+            android:theme="@style/Theme.NuxFlix" />
+
     </application>
 </manifest>
