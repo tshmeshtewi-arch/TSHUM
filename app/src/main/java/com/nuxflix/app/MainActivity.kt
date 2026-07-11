@@ -1,6 +1,9 @@
 
 package com.nuxflix.app
 
+import com.nuxflix.SettingsActivity
+import com.nuxflix.AccountActivity
+import com.nuxflix.DownloadsActivity
 import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
