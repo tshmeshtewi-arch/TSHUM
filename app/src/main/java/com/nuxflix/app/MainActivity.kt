@@ -1,5 +1,9 @@
+
 package com.nuxflix.app
 
+import com.nuxflix.app.settings.SettingsActivity
+import com.nuxflix.app.settings.AccountActivity
+import com.nuxflix.app.downloads.DownloadsActivity
 import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
@@ -131,30 +135,35 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupBottomNav() {
-        bottomNav.setOnNavigationItemSelectedListener { item ->
-            when (item.itemId) {
-                R.id.nav_home -> {
-                    currentCategory = "الكل"
-                    hideSearch()
-                    chipGroup.check(chipGroup.getChildAt(0).id)
-                    loadMovies()
-                    true
-                }
-                R.id.nav_categories -> {
-                    chipGroup.visibility = if (chipGroup.visibility == View.VISIBLE) View.GONE else View.VISIBLE
-                    true
-                }
-                R.id.nav_search -> {
-                    searchIcon.performClick()
-                    true
-                }
-                R.id.nav_favorites -> {
-                    true
-                }
-                else -> false
+    bottomNav.setOnNavigationItemSelectedListener { item ->
+        when (item.itemId) {
+            R.id.nav_home -> {
+                currentCategory = "الكل"
+                hideSearch()
+                chipGroup.check(chipGroup.getChildAt(0).id)
+                loadMovies()
+                true
             }
+            R.id.nav_categories -> {
+                chipGroup.visibility = if (chipGroup.visibility == View.VISIBLE) View.GONE else View.VISIBLE
+                true
+            }
+            R.id.nav_downloads -> {
+                startActivity(Intent(this, DownloadsActivity::class.java))
+                true
+            }
+            R.id.nav_settings -> {
+                startActivity(Intent(this, SettingsActivity::class.java))
+                true
+            }
+            R.id.nav_account -> {
+                startActivity(Intent(this, AccountActivity::class.java))
+                true
+            }
+            else -> false
         }
     }
+}
 
     private fun loadMovies() {
         val movies = if (currentQuery.isNotBlank()) {
