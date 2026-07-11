@@ -1,7 +1,8 @@
 package com.nuxflix.app
 
 import android.os.Bundle
-import android.widget.*
+import android.widget.ImageButton
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 
 class DownloadsActivity : AppCompatActivity() {
@@ -9,10 +10,7 @@ class DownloadsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_downloads)
 
-        val btnBack: ImageButton = findViewById(R.id.btn_downloads_back)
-        val emptyText: TextView = findViewById(R.id.downloads_empty)
-
-        btnBack.setOnClickListener { finish() }
-        emptyText.visibility = TextView.VISIBLE
+        findViewById<ImageButton>(R.id.btn_downloads_back).setOnClickListener { finish() }
+        findViewById<TextView>(R.id.downloads_status).text = "لا توجد تنزيلات حالياً"
     }
 }
