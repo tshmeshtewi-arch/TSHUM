@@ -1,6 +1,7 @@
 package com.nuxflix.app
 
 import android.os.Bundle
+import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
@@ -16,8 +17,8 @@ class SettingsActivity : AppCompatActivity() {
         val switchDarkMode: Switch = findViewById(R.id.switch_darkmode)
         val textQuality: TextView = findViewById(R.id.settings_quality_value)
         val textLanguage: TextView = findViewById(R.id.settings_language_value)
-        val textCache: TextView = findViewById(R.id.settings_cache)
-        val textAbout: TextView = findViewById(R.id.settings_about)
+        val textCache: View = findViewById(R.id.settings_cache)
+        val textAbout: View = findViewById(R.id.settings_about)
         val textLogout: TextView = findViewById(R.id.settings_logout)
 
         btnBack.setOnClickListener { finish() }
@@ -47,7 +48,7 @@ class SettingsActivity : AppCompatActivity() {
 
         textAbout.setOnClickListener {
             AlertDialog.Builder(this).setTitle("حول التطبيق")
-                .setMessage("FUXFLIX v1.0\nمنصة أفلام عربية متطورة\n© 2026")
+                .setMessage("NuxFlix v1.0\nمنصة أفلام متطورة\n© 2026")
                 .setPositiveButton("حسناً", null).show()
         }
 
